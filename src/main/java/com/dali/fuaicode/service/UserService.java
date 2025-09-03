@@ -1,10 +1,15 @@
 package com.dali.fuaicode.service;
 
 import cn.hutool.http.server.HttpServerRequest;
+import com.dali.fuaicode.model.dto.user.UserQueryRequest;
 import com.dali.fuaicode.model.vo.LoginUserVO;
+import com.dali.fuaicode.model.vo.UserVO;
+import com.mybatisflex.core.query.QueryWrapper;
 import com.mybatisflex.core.service.IService;
 import com.dali.fuaicode.model.entity.User;
 import jakarta.servlet.http.HttpServletRequest;
+
+import java.util.List;
 
 /**
  * 用户 服务层。
@@ -33,4 +38,10 @@ public interface UserService extends IService<User> {
     User getLoginUser(HttpServletRequest request);
 
     boolean userLogout(HttpServletRequest request);
+
+    UserVO getUserVO(User user);
+
+    List<UserVO> getUserVOList(List<User> userList);
+
+    QueryWrapper getQueryWrapper(UserQueryRequest userQueryRequest);
 }
