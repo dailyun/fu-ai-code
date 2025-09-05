@@ -1,8 +1,11 @@
 package com.dali.fuaicode.model.vo;
 
+import lombok.Data;
+
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
+@Data
 public class LoginUserVO implements Serializable {
 
     private static final long serialVersionUID = 1L;
