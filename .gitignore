@@ -35,3 +35,7 @@ build/
 ### CUSTOM ###
 application-local.yml
 
+# Ignore tmp directory
+tmp/
+
+
