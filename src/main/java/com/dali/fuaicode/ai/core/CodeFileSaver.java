@@ -27,7 +27,7 @@ public class CodeFileSaver {
         return new File(baseDirPath);
     }
 
-    public static File saveMultiCodeResult(MultiFileCodeResult result) {
+    public static File saveMultiFileCodeResult(MultiFileCodeResult result) {
         String baseDirPath = buildUniqueDir(CodeGenTypeEnum.MULTI_FILE.getValue());
         writeToFile(baseDirPath, "index.html", result.getHtmlCode());
         writeToFile(baseDirPath, "script.js", result.getJsCode());
@@ -59,5 +59,6 @@ public class CodeFileSaver {
         String filePath = dirPath + File.separator + filename;
         FileUtil.writeString(content, filePath, StandardCharsets.UTF_8);
     }
+
 
 }
