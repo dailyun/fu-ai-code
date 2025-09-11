@@ -4,6 +4,8 @@ import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.util.IdUtil;
 import cn.hutool.core.util.StrUtil;
 import com.dali.fuaicode.ai.model.enums.CodeGenTypeEnum;
+import com.dali.fuaicode.exception.BusinessException;
+import com.dali.fuaicode.exception.ErrorCode;
 
 import java.io.File;
 import java.nio.charset.StandardCharsets;
@@ -13,11 +15,11 @@ public abstract class CodeFileSaverTemplate<T> {
 
     protected static final String FILE_SAVE_ROOT_DIR = System.getProperty("user.dir") + "/tmp/code_output";
 
-    public final File saveCode(T  result) {
+    public final File saveCode(T  result, Long appId) {
         // validate input
         validateInput(result);
         // generate unique dir
-        String baseDirPath = buildUniqueDir();
+        String baseDirPath = buildUniqueDir(appId);
         // save files
         saveFiles(result, baseDirPath);
         // return
@@ -43,9 +45,12 @@ public abstract class CodeFileSaverTemplate<T> {
      *
      * @return 返回一个唯一的目录名称
      */
-    protected final String buildUniqueDir(){
+    protected final String buildUniqueDir(Long appId){
+        if (appId == null) {
+            throw new BusinessException(ErrorCode.PARAMS_ERROR, "appId cannot be null");
+        }
         String codeType = getCodeType().getValue();
-        String uniqueDirName = StrUtil.format("{}_{}", codeType, IdUtil.getSnowflakeNextIdStr());
+        String uniqueDirName = StrUtil.format("{}_{}", codeType, appId);
         String dirPath = FILE_SAVE_ROOT_DIR + File.separator + uniqueDirName;
         FileUtil.mkdir(dirPath);
         return dirPath;
