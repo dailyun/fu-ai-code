@@ -21,6 +21,7 @@ import com.dali.fuaicode.mapper.AppMapper;
 import com.dali.fuaicode.service.AppService;
 import io.swagger.v3.core.util.PathUtils;
 import jakarta.annotation.Resource;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.tomcat.util.http.fileupload.FileUtils;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
@@ -39,6 +40,7 @@ import java.util.stream.Collectors;
  *
  *
  */
+@Slf4j
 @Service
 public class AppServiceImpl extends ServiceImpl<AppMapper, App>  implements AppService{
 
@@ -160,6 +162,7 @@ public class AppServiceImpl extends ServiceImpl<AppMapper, App>  implements AppS
         String sourceDirPath = AppConstant.CODE_OUTPUT_ROOT_DIR + File.separator+ sourceName;
         // 6. 检查路径是否存在
         File sourceDir = new File(sourceDirPath);
+        log.info("检查路径是否存在: {}", sourceDirPath);
         if (!sourceDir.exists() || !sourceDir.isDirectory()) {
             throw new BusinessException(ErrorCode.SYSTEM_ERROR, "源目录不存在");
         }
