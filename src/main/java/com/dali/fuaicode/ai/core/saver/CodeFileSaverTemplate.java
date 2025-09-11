@@ -4,6 +4,7 @@ import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.util.IdUtil;
 import cn.hutool.core.util.StrUtil;
 import com.dali.fuaicode.ai.model.enums.CodeGenTypeEnum;
+import com.dali.fuaicode.constant.AppConstant;
 import com.dali.fuaicode.exception.BusinessException;
 import com.dali.fuaicode.exception.ErrorCode;
 
@@ -13,7 +14,7 @@ import java.nio.charset.StandardCharsets;
 
 public abstract class CodeFileSaverTemplate<T> {
 
-    protected static final String FILE_SAVE_ROOT_DIR = System.getProperty("user.dir") + "/tmp/code_output";
+    protected static final String FILE_SAVE_ROOT_DIR = AppConstant.CODE_OUTPUT_ROOT_DIR;
 
     public final File saveCode(T  result, Long appId) {
         // validate input

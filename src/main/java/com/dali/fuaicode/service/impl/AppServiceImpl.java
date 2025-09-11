@@ -2,8 +2,11 @@ package com.dali.fuaicode.service.impl;
 
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.collection.CollUtil;
+import cn.hutool.core.io.FileUtil;
+import cn.hutool.core.util.RandomUtil;
 import com.dali.fuaicode.ai.core.AiCodeGeneratorFacade;
 import com.dali.fuaicode.ai.model.enums.CodeGenTypeEnum;
+import com.dali.fuaicode.constant.AppConstant;
 import com.dali.fuaicode.exception.BusinessException;
 import com.dali.fuaicode.exception.ErrorCode;
 import com.dali.fuaicode.exception.ThrowUtils;
@@ -16,10 +19,15 @@ import com.mybatisflex.spring.service.impl.ServiceImpl;
 import com.dali.fuaicode.model.entity.App;
 import com.dali.fuaicode.mapper.AppMapper;
 import com.dali.fuaicode.service.AppService;
+import io.swagger.v3.core.util.PathUtils;
 import jakarta.annotation.Resource;
+import org.apache.tomcat.util.http.fileupload.FileUtils;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 
+import java.io.File;
+import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -126,6 +134,51 @@ public class AppServiceImpl extends ServiceImpl<AppMapper, App>  implements AppS
         }
         // 5. 调用AiCodeGeneratorFacede
         return aiCodeGeneratorFacede.generateAndSaveCodeStream(message, codeGenTypeEnum, appId);
+    }
+
+    @Override
+    public String deployApp(Long appId, User loginUser) {
+        // 1. 校验
+        ThrowUtils.throwIf(appId ==  null || appId <=0, ErrorCode.PARAMS_ERROR, "appId错误");
+        ThrowUtils.throwIf(loginUser == null, ErrorCode.NOT_LOGIN_ERROR, "用户未登录");
+        // 2. 获取应用信息
+        App app = this.getById(appId);
+        ThrowUtils.throwIf(app == null, ErrorCode.NOT_FOUND_ERROR, "应用不存在");
+        // 3. 校验用户, 是否为当前应用创建者
+        if (app.getUserId() == null || !app.getUserId().equals(loginUser.getId())) {
+            throw new BusinessException(ErrorCode.NO_AUTH_ERROR, "没有权限");
+        }
+        // 4. 检查是否已有 deployKey
+        String deployKey = app.getDeployKey();
+        // 没有就生成六位 deployKey
+        if (deployKey == null || deployKey.length() <= 0) {
+            deployKey = RandomUtil.randomString(6);
+        }
+        // 5. 获取代码生成类型，构建源目录路径
+        String codeGenType = app.getCodeGenType();
+        String sourceName = codeGenType + "_" + appId;
+        String sourceDirPath = AppConstant.CODE_OUTPUT_ROOT_DIR + File.separator+ sourceName;
+        // 6. 检查路径是否存在
+        File sourceDir = new File(sourceDirPath);
+        if (!sourceDir.exists() || !sourceDir.isDirectory()) {
+            throw new BusinessException(ErrorCode.SYSTEM_ERROR, "源目录不存在");
+        }
+        // 7. 复制文件到部署路径
+        String deployDirPath = AppConstant.CODE_DEPLOY_ROOT_DIR + File.separator + deployKey;
+        try {
+            FileUtil.copyContent(sourceDir, new File(deployDirPath), true);
+        } catch (Exception e) {
+            throw new BusinessException(ErrorCode.SYSTEM_ERROR, "复制文件失败");
+        }
+        // 8. 更新应用的 deployKey 和部署时间
+        App updateApp = new App();
+        updateApp.setId(appId);
+        updateApp.setDeployKey(deployKey);
+        updateApp.setDeployedTime(LocalDateTime.now());
+        boolean updateResult = this.updateById(updateApp);
+        ThrowUtils.throwIf(!updateResult, ErrorCode.OPERATION_ERROR, "更新应用失败");
+        // 9. 返回可访问的的 URL
+        return String.format("%s/%s", AppConstant.CODE_DEPLOY_HOST, deployKey);
     }
 
 

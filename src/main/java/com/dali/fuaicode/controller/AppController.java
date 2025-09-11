@@ -13,10 +13,7 @@ import com.dali.fuaicode.constant.UserConstant;
 import com.dali.fuaicode.exception.BusinessException;
 import com.dali.fuaicode.exception.ErrorCode;
 import com.dali.fuaicode.exception.ThrowUtils;
-import com.dali.fuaicode.model.dto.app.AppAddRequest;
-import com.dali.fuaicode.model.dto.app.AppAdminUpdateRequest;
-import com.dali.fuaicode.model.dto.app.AppQueryRequest;
-import com.dali.fuaicode.model.dto.app.AppUpdateRequest;
+import com.dali.fuaicode.model.dto.app.*;
 import com.dali.fuaicode.model.entity.User;
 import com.dali.fuaicode.model.vo.AppVO;
 import com.dali.fuaicode.service.UserService;
@@ -381,6 +378,18 @@ public class AppController {
                                 .data("")
                                 .build()
                 ));
+
+    }
+
+
+    @PostMapping("/deploy")
+    public BaseResponse<String> deployApp(@RequestBody AppDeployRequest appDeployRequest, HttpServletRequest  request) {
+        ThrowUtils.throwIf(appDeployRequest == null, ErrorCode.PARAMS_ERROR);
+        Long appId = appDeployRequest.getAppId();
+
+        User loginUser = userService.getLoginUser(request);
+        String deployUrl = appService.deployApp(appId,loginUser);
+        return ResultUtils.success(deployUrl);
 
     }
 
