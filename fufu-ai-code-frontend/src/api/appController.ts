@@ -126,9 +126,9 @@ export async function getAppVoById(
 }
 
 /** 此处后端没有提供注释 GET /app/getInfo/${param0} */
-export async function getInfo(
+export async function getInfo1(
   // 叠加生成的Param类型 (非body参数swagger默认没有生成对象)
-  params: API.getInfoParams,
+  params: API.getInfo1Params,
   options?: { [key: string]: any }
 ) {
   const { id: param0, ...queryParams } = params
@@ -155,7 +155,7 @@ export async function listGoodAppVoByPage(
 }
 
 /** 此处后端没有提供注释 GET /app/list */
-export async function list(options?: { [key: string]: any }) {
+export async function list1(options?: { [key: string]: any }) {
   return request<API.App[]>('/app/list', {
     method: 'GET',
     ...(options || {}),
@@ -178,9 +178,9 @@ export async function listMyAppVoByPage(
 }
 
 /** 此处后端没有提供注释 GET /app/page */
-export async function page(
+export async function page1(
   // 叠加生成的Param类型 (非body参数swagger默认没有生成对象)
-  params: API.pageParams,
+  params: API.page1Params,
   options?: { [key: string]: any }
 ) {
   return request<API.PageApp>('/app/page', {
@@ -195,9 +195,9 @@ export async function page(
 }
 
 /** 此处后端没有提供注释 DELETE /app/remove/${param0} */
-export async function remove(
+export async function remove1(
   // 叠加生成的Param类型 (非body参数swagger默认没有生成对象)
-  params: API.removeParams,
+  params: API.remove1Params,
   options?: { [key: string]: any }
 ) {
   const { id: param0, ...queryParams } = params
@@ -209,7 +209,7 @@ export async function remove(
 }
 
 /** 此处后端没有提供注释 POST /app/save */
-export async function save(body: API.App, options?: { [key: string]: any }) {
+export async function save1(body: API.App, options?: { [key: string]: any }) {
   return request<boolean>('/app/save', {
     method: 'POST',
     headers: {
@@ -221,7 +221,7 @@ export async function save(body: API.App, options?: { [key: string]: any }) {
 }
 
 /** 此处后端没有提供注释 PUT /app/update */
-export async function update(body: API.App, options?: { [key: string]: any }) {
+export async function update1(body: API.App, options?: { [key: string]: any }) {
   return request<boolean>('/app/update', {
     method: 'PUT',
     headers: {
