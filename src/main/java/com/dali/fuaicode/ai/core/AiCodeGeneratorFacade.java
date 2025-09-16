@@ -2,6 +2,7 @@ package com.dali.fuaicode.ai.core;
 
 
 import com.dali.fuaicode.ai.AiCodeGeneratorService;
+import com.dali.fuaicode.ai.AiCodeGeneratorServiceFactory;
 import com.dali.fuaicode.ai.core.parser.CodeParserExecutor;
 import com.dali.fuaicode.ai.core.saver.CodeFileSaverExecutor;
 import com.dali.fuaicode.ai.model.HtmlCodeResult;
@@ -21,7 +22,8 @@ import java.io.File;
 public class AiCodeGeneratorFacade {
 
     @Resource
-    private AiCodeGeneratorService aiCodeGeneratorService;
+    private AiCodeGeneratorServiceFactory aiCodeGeneratorServiceFactory;
+
 
 //    public File generateAndSaveCode(String userMessage, CodeGenTypeEnum codeGenTypeEnum) {
 //        if (codeGenTypeEnum == null) {
@@ -72,6 +74,9 @@ public class AiCodeGeneratorFacade {
         if (codeGenTypeEnum == null) {
             throw new BusinessException(ErrorCode.SYSTEM_ERROR, "生成类型为空");
         }
+        // 根据 appId 获取对应的 AI 服务实例
+        AiCodeGeneratorService aiCodeGeneratorService = aiCodeGeneratorServiceFactory.getAiCodeGeneratorService(appId);
+
         return switch (codeGenTypeEnum) {
             case HTML -> {
                 HtmlCodeResult result = aiCodeGeneratorService.generateHtmlCode(userMessage);
@@ -99,6 +104,9 @@ public class AiCodeGeneratorFacade {
         if (codeGenTypeEnum == null) {
             throw new BusinessException(ErrorCode.SYSTEM_ERROR, "生成类型为空");
         }
+        // 根据 appId 获取对应的 AI 服务实例
+        AiCodeGeneratorService aiCodeGeneratorService = aiCodeGeneratorServiceFactory.getAiCodeGeneratorService(appId);
+
         return switch (codeGenTypeEnum) {
             case HTML -> {
                 Flux<String> codeStream = aiCodeGeneratorService.generateHtmlCodeStream(userMessage);
