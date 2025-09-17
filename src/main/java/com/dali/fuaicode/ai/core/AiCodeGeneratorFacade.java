@@ -63,35 +63,35 @@ public class AiCodeGeneratorFacade {
 //        return CodeFileSaver.saveMultiFileCodeResult(multiFileCodeResult);
 //    }
 
-    /**
-     * 统一入口：根据类型生成并保存代码（使用 appId）
-     *
-     * @param userMessage     用户提示词
-     * @param codeGenTypeEnum 生成类型
-     * @return 保存的目录
-     */
-    public File generateAndSaveCode(String userMessage, CodeGenTypeEnum codeGenTypeEnum, Long appId) {
-        if (codeGenTypeEnum == null) {
-            throw new BusinessException(ErrorCode.SYSTEM_ERROR, "生成类型为空");
-        }
-        // 根据 appId 获取对应的 AI 服务实例
-        AiCodeGeneratorService aiCodeGeneratorService = aiCodeGeneratorServiceFactory.getAiCodeGeneratorService(appId);
-
-        return switch (codeGenTypeEnum) {
-            case HTML -> {
-                HtmlCodeResult result = aiCodeGeneratorService.generateHtmlCode(userMessage);
-                yield CodeFileSaverExecutor.executeSaver(result, CodeGenTypeEnum.HTML, appId);
-            }
-            case MULTI_FILE -> {
-                MultiFileCodeResult result = aiCodeGeneratorService.generateMultiFileCode(userMessage);
-                yield CodeFileSaverExecutor.executeSaver(result, CodeGenTypeEnum.MULTI_FILE, appId);
-            }
-            default -> {
-                String errorMessage = "不支持的生成类型：" + codeGenTypeEnum.getValue();
-                throw new BusinessException(ErrorCode.SYSTEM_ERROR, errorMessage);
-            }
-        };
-    }
+//    /**
+//     * 统一入口：根据类型生成并保存代码（使用 appId）
+//     *
+//     * @param userMessage     用户提示词
+//     * @param codeGenTypeEnum 生成类型
+//     * @return 保存的目录
+//     */
+//    public File generateAndSaveCode(String userMessage, CodeGenTypeEnum codeGenTypeEnum, Long appId) {
+//        if (codeGenTypeEnum == null) {
+//            throw new BusinessException(ErrorCode.SYSTEM_ERROR, "生成类型为空");
+//        }
+//        // 根据 appId 获取对应的 AI 服务实例
+//        AiCodeGeneratorService aiCodeGeneratorService = aiCodeGeneratorServiceFactory.getAiCodeGeneratorService(appId);
+//
+//        return switch (codeGenTypeEnum) {
+//            case HTML -> {
+//                HtmlCodeResult result = aiCodeGeneratorService.generateHtmlCode(userMessage);
+//                yield CodeFileSaverExecutor.executeSaver(result, CodeGenTypeEnum.HTML, appId);
+//            }
+//            case MULTI_FILE -> {
+//                MultiFileCodeResult result = aiCodeGeneratorService.generateMultiFileCode(userMessage);
+//                yield CodeFileSaverExecutor.executeSaver(result, CodeGenTypeEnum.MULTI_FILE, appId);
+//            }
+//            default -> {
+//                String errorMessage = "不支持的生成类型：" + codeGenTypeEnum.getValue();
+//                throw new BusinessException(ErrorCode.SYSTEM_ERROR, errorMessage);
+//            }
+//        };
+//    }
 
     /**
      * 统一入口：根据类型生成并保存代码（流式，使用 appId）
@@ -105,8 +105,7 @@ public class AiCodeGeneratorFacade {
             throw new BusinessException(ErrorCode.SYSTEM_ERROR, "生成类型为空");
         }
         // 根据 appId 获取对应的 AI 服务实例
-        AiCodeGeneratorService aiCodeGeneratorService = aiCodeGeneratorServiceFactory.getAiCodeGeneratorService(appId);
-
+        AiCodeGeneratorService aiCodeGeneratorService = aiCodeGeneratorServiceFactory.getAiCodeGeneratorService(appId, codeGenTypeEnum);
         return switch (codeGenTypeEnum) {
             case HTML -> {
                 Flux<String> codeStream = aiCodeGeneratorService.generateHtmlCodeStream(userMessage);
@@ -116,11 +115,18 @@ public class AiCodeGeneratorFacade {
                 Flux<String> codeStream = aiCodeGeneratorService.generateMultiFileCodeStream(userMessage);
                 yield processCodeStream(codeStream, CodeGenTypeEnum.MULTI_FILE, appId);
             }
+
+            //TODO why use MultiFile
+            case VUE_PROJECT -> {
+                Flux<String> codeStream = aiCodeGeneratorService.generateVueProjectCodeStream(appId, userMessage);
+                yield processCodeStream(codeStream, CodeGenTypeEnum.MULTI_FILE, appId);
+            }
             default -> {
                 String errorMessage = "不支持的生成类型：" + codeGenTypeEnum.getValue();
                 throw new BusinessException(ErrorCode.SYSTEM_ERROR, errorMessage);
             }
         };
+
     }
 
     /**
