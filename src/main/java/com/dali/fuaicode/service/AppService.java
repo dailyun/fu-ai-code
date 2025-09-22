@@ -1,5 +1,6 @@
 package com.dali.fuaicode.service;
 
+import com.dali.fuaicode.model.dto.app.AppAddRequest;
 import com.dali.fuaicode.model.dto.app.AppQueryRequest;
 import com.dali.fuaicode.model.entity.User;
 import com.dali.fuaicode.model.vo.AppVO;
@@ -22,4 +23,8 @@ public interface AppService extends IService<App> {
     Flux<String> chatToGenCode(Long appId, String message, User loginUser);
 
     String deployApp(Long appId, User loginUser);
+
+    Long createApp(AppAddRequest appAddRequest, User loginUser);
+
+    void generateAppScreenshotAsync(Long appId, String appUrl);
 }
