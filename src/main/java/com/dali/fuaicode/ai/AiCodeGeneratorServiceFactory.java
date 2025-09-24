@@ -1,10 +1,11 @@
 package com.dali.fuaicode.ai;
 
 import com.dali.fuaicode.ai.model.enums.CodeGenTypeEnum;
-import com.dali.fuaicode.ai.tools.FileWriteTool;
+import com.dali.fuaicode.ai.tools.*;
 import com.dali.fuaicode.exception.BusinessException;
 import com.dali.fuaicode.exception.ErrorCode;
 import com.dali.fuaicode.service.ChatHistoryService;
+import com.dali.fuaicode.utils.SpringContextUtil;
 import com.github.benmanes.caffeine.cache.Cache;
 import com.github.benmanes.caffeine.cache.Caffeine;
 import dev.langchain4j.community.store.memory.chat.redis.RedisChatMemoryStore;
@@ -38,7 +39,8 @@ public class AiCodeGeneratorServiceFactory {
 
     @Resource
     private ChatHistoryService chatHistoryService;
-
+    @Resource
+    private ToolManager toolManager;
     /**
      * AI 服务实例缓存
      */
@@ -107,6 +109,7 @@ public class AiCodeGeneratorServiceFactory {
             default -> throw new BusinessException(ErrorCode.SYSTEM_ERROR,
                     "不支持的代码生成类型: " + codeGenType.getValue());
         };
+
     }
 
 

@@ -6,6 +6,7 @@ import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.util.RandomUtil;
 import cn.hutool.core.util.StrUtil;
 import com.dali.fuaicode.ai.AiCodeGenTypeRoutingService;
+import com.dali.fuaicode.ai.AiCodeGenTypeRoutingServiceFactory;
 import com.dali.fuaicode.ai.core.AiCodeGeneratorFacade;
 import com.dali.fuaicode.ai.core.builder.VueProjectBuilder;
 import com.dali.fuaicode.ai.core.handler.StreamHandlerExecutor;
@@ -63,6 +64,9 @@ public class AppServiceImpl extends ServiceImpl<AppMapper, App>  implements AppS
 
     @Resource
     private VueProjectBuilder vueProjectBuilder;
+
+    @Resource
+    private AiCodeGenTypeRoutingServiceFactory aiCodeGenTypeRoutingServiceFactory;
 
     @Override
     public AppVO getAppVO(App app) {
