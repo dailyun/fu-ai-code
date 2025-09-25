@@ -1,24 +1,32 @@
 package com.dali.fuaicode.ai;
 
+import com.dali.fuaicode.utils.SpringContextUtil;
 import dev.langchain4j.model.chat.ChatModel;
 import dev.langchain4j.service.AiServices;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
 @Slf4j
 @Configuration
-public class AiCodeGenTypeRoutingServiceFactory {
+public class AiCodeGenTypeRoutingServiceFactory implements ApplicationContextAware {
 
+    private ApplicationContext applicationContext;
 
-    @Resource
-    private ChatModel chatModel;
+    @Override
+    public void setApplicationContext(ApplicationContext ctx) {
+        this.applicationContext = ctx;
+    }
 
     @Bean
-    public AiCodeGenTypeRoutingService aiCodeGenTypeRoutingService() {
+    public AiCodeGenTypeRoutingService createAiCodeGenTypeRoutingService() {
+        ChatModel chatModel = applicationContext.getBean("routingChatModelPrototype", ChatModel.class);
         return AiServices.builder(AiCodeGenTypeRoutingService.class)
                 .chatModel(chatModel)
                 .build();
     }
 }
+
+
