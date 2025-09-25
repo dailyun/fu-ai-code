@@ -17,15 +17,15 @@ class CodeGenWorkflowTest {
         System.out.println("生成的代码目录: " + result.getGeneratedCodeDir());
         System.out.println("构建结果目录: " + result.getBuildResultDir());
     }
-//
-//    @Test
-//    void testCorporateWorkflow() {
-//        WorkflowContext result = new CodeGenWorkflow().executeWorkflow("创建企业官网，展示公司形象和业务介绍");
-//        Assertions.assertNotNull(result);
-//        System.out.println("生成类型: " + result.getGenerationType());
-//        System.out.println("生成的代码目录: " + result.getGeneratedCodeDir());
-//        System.out.println("构建结果目录: " + result.getBuildResultDir());
-//    }
+
+    @Test
+    void testCorporateWorkflow() {
+        WorkflowContext result = new CodeGenWorkflow().executeWorkflow("生成一个简单的网页，内容为hello world");
+        Assertions.assertNotNull(result);
+        System.out.println("生成类型: " + result.getGenerationType());
+        System.out.println("生成的代码目录: " + result.getGeneratedCodeDir());
+        System.out.println("构建结果目录: " + result.getBuildResultDir());
+    }
 //
 //    @Test
 //    void testVueProjectWorkflow() {
