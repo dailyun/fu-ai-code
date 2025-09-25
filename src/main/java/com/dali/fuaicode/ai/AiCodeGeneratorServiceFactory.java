@@ -5,7 +5,6 @@ import com.dali.fuaicode.ai.tools.*;
 import com.dali.fuaicode.exception.BusinessException;
 import com.dali.fuaicode.exception.ErrorCode;
 import com.dali.fuaicode.service.ChatHistoryService;
-import com.dali.fuaicode.utils.SpringContextUtil;
 import com.github.benmanes.caffeine.cache.Cache;
 import com.github.benmanes.caffeine.cache.Caffeine;
 import dev.langchain4j.community.store.memory.chat.redis.RedisChatMemoryStore;
@@ -16,7 +15,6 @@ import dev.langchain4j.model.chat.StreamingChatModel;
 import dev.langchain4j.service.AiServices;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 
 import java.time.Duration;

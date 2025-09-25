@@ -1,7 +1,5 @@
 package com.dali.fuaicode.ai;
 
-import com.dali.fuaicode.ai.AiCodeGenTypeRoutingService;
-import com.dali.fuaicode.utils.SpringContextUtil;
 import dev.langchain4j.model.chat.ChatModel;
 import dev.langchain4j.service.AiServices;
 import jakarta.annotation.Resource;
