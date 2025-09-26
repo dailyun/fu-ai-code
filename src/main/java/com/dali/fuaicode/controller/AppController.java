@@ -16,6 +16,8 @@ import com.dali.fuaicode.exception.ThrowUtils;
 import com.dali.fuaicode.model.dto.app.*;
 import com.dali.fuaicode.model.entity.User;
 import com.dali.fuaicode.model.vo.AppVO;
+import com.dali.fuaicode.ratelimit.annotation.RateLimit;
+import com.dali.fuaicode.ratelimit.enums.RateLimitType;
 import com.dali.fuaicode.service.ProjectDownloadService;
 import com.dali.fuaicode.service.UserService;
 import com.mybatisflex.core.paginate.Page;
@@ -348,6 +350,7 @@ public class AppController {
     }
 
     @GetMapping(value = "/chat/gen/code", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
+    @RateLimit(limitType = RateLimitType.USER, rate = 5, rateInterval = 60, message = "AI 对话请求过于频繁，请稍候重试")
     public Flux<ServerSentEvent<String>> chatToGenCode(@RequestParam Long appId,
                                                        @RequestParam String message,
                                                        HttpServletRequest request) {
