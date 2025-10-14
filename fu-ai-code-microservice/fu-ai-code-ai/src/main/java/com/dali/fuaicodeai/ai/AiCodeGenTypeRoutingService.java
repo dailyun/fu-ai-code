@@ -1,6 +1,7 @@
-package com.dali.fuaicode.ai;
+package com.dali.fuaicodeai.ai;
 
-import com.dali.fuaicode.ai.model.enums.CodeGenTypeEnum;
+
+import com.dali.fuaicodeai.ai.model.enums.CodeGenTypeEnum;
 import dev.langchain4j.service.SystemMessage;
 
 /**
