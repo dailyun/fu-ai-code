@@ -1,4 +1,4 @@
-package com.dali.fuaicodeapp.ai.core.parser;
+package com.dali.fuaicodeapp.core.parser;
 
 
 
@@ -7,7 +7,7 @@ import com.dali.fuaicodeai.ai.model.HtmlCodeResult;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class HtmlCodeParser implements CodeParser<HtmlCodeResult>{
+public class HtmlCodeParser implements CodeParser<HtmlCodeResult> {
 
     private static final Pattern HTML_CODE_PATTERN = Pattern.compile("```html\\s*\\n([\\s\\S]*?)```", Pattern.CASE_INSENSITIVE);
 

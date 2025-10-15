@@ -1,4 +1,4 @@
-package com.dali.fuaicodeapp.ai.core.handler;
+package com.dali.fuaicodeapp.core.handler;
 
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.json.JSONObject;
@@ -7,7 +7,7 @@ import cn.hutool.json.JSONUtil;
 import com.dali.fuaicodeai.ai.model.message.*;
 import com.dali.fuaicodeai.ai.tools.BaseTool;
 import com.dali.fuaicodeai.ai.tools.ToolManager;
-import com.dali.fuaicodeapp.ai.core.builder.VueProjectBuilder;
+import com.dali.fuaicodeapp.core.builder.VueProjectBuilder;
 import com.dali.fuaicodeapp.service.ChatHistoryService;
 import com.dali.fuaicodemodel.model.entity.User;
 import com.dali.fuaicodemodel.model.enums.ChatHistoryMessageTypeEnum;

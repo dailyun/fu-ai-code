@@ -1,4 +1,4 @@
-package com.dali.fuaicodeapp.ai.core;//package com.dali.fuaicode.ai.core;
+package com.dali.fuaicodeapp.core;//package com.dali.fuaicode.ai.core;
 //
 //import cn.hutool.core.io.FileUtil;
 //import cn.hutool.core.util.IdUtil;

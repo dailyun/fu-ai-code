@@ -1,4 +1,4 @@
-package com.dali.fuaicodeapp.ai.core;
+package com.dali.fuaicodeapp.core;
 
 
 import cn.hutool.json.JSONUtil;
@@ -9,15 +9,15 @@ import com.dali.fuaicodeai.ai.model.message.AiResponseMessage;
 import com.dali.fuaicodeai.ai.model.message.ToolExecutedMessage;
 import com.dali.fuaicodeai.ai.model.message.ToolRequestMessage;
 import com.dali.fuaicodeapp.ai.AiCodeGeneratorServiceFactory;
-import com.dali.fuaicodeapp.ai.core.builder.VueProjectBuilder;
-import com.dali.fuaicodeapp.ai.core.parser.CodeParserExecutor;
-import com.dali.fuaicodeapp.ai.core.saver.CodeFileSaverExecutor;
-import dev.langchain4j.model.chat.response.ChatResponse;
-import dev.langchain4j.service.TokenStream;
-import dev.langchain4j.service.tool.ToolExecution;
+import com.dali.fuaicodeapp.core.builder.VueProjectBuilder;
+import com.dali.fuaicodeapp.core.parser.CodeParserExecutor;
+import com.dali.fuaicodeapp.core.saver.CodeFileSaverExecutor;
 import com.dali.fuaicodecommon.constant.AppConstant;
 import com.dali.fuaicodecommon.exception.BusinessException;
 import com.dali.fuaicodecommon.exception.ErrorCode;
+import dev.langchain4j.model.chat.response.ChatResponse;
+import dev.langchain4j.service.TokenStream;
+import dev.langchain4j.service.tool.ToolExecution;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;

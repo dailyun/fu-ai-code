@@ -1,4 +1,4 @@
-package com.dali.fuaicodeapp.ai.core.parser;
+package com.dali.fuaicodeapp.core.parser;
 
 
 

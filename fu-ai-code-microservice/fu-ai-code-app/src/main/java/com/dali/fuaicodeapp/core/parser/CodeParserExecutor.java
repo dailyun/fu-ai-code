@@ -1,9 +1,11 @@
-package com.dali.fuaicodeapp.ai.core.parser;
+package com.dali.fuaicodeapp.core.parser;
 
 
 import com.dali.fuaicodeai.ai.model.enums.CodeGenTypeEnum;
 import com.dali.fuaicodecommon.exception.BusinessException;
 import com.dali.fuaicodecommon.exception.ErrorCode;
+
+import static com.dali.fuaicodeai.ai.model.enums.CodeGenTypeEnum.HTML;
 
 public class CodeParserExecutor {
 

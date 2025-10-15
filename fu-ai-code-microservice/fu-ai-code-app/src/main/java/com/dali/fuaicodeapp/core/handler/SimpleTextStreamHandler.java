@@ -1,4 +1,4 @@
-package com.dali.fuaicodeapp.ai.core.handler;
+package com.dali.fuaicodeapp.core.handler;
 
 
 import com.dali.fuaicodeapp.service.ChatHistoryService;

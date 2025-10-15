@@ -1,7 +1,8 @@
 package com.dali.fuaicodeai.ai.tools;
 
 import cn.hutool.json.JSONObject;
-import com.dali.fuaicode.constant.AppConstant;
+
+import com.dali.fuaicodecommon.constant.AppConstant;
 import dev.langchain4j.agent.tool.P;
 import dev.langchain4j.agent.tool.Tool;
 import dev.langchain4j.agent.tool.ToolMemoryId;

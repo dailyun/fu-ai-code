@@ -6,12 +6,14 @@ import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.util.RandomUtil;
 import cn.hutool.core.util.StrUtil;
 
+
 import com.dali.fuaicodeai.ai.AiCodeGenTypeRoutingService;
 import com.dali.fuaicodeai.ai.model.enums.CodeGenTypeEnum;
 import com.dali.fuaicodeapp.ai.AiCodeGenTypeRoutingServiceFactory;
-import com.dali.fuaicodeapp.ai.core.AiCodeGeneratorFacade;
-import com.dali.fuaicodeapp.ai.core.builder.VueProjectBuilder;
-import com.dali.fuaicodeapp.ai.core.handler.StreamHandlerExecutor;
+
+import com.dali.fuaicodeapp.core.AiCodeGeneratorFacade;
+import com.dali.fuaicodeapp.core.builder.VueProjectBuilder;
+import com.dali.fuaicodeapp.core.handler.StreamHandlerExecutor;
 import com.dali.fuaicodeapp.mapper.AppMapper;
 import com.dali.fuaicodeapp.service.AppService;
 import com.dali.fuaicodeclient.innerservice.InnerScreenshotService;

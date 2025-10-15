@@ -17,7 +17,7 @@ import java.io.File;
  * @author dali
  */
 @Component
-@ConditionalOnBean(CosClientConfig.class)
+@ConditionalOnBean(COSClient.class)
 @Slf4j
 public class CosManager {
 

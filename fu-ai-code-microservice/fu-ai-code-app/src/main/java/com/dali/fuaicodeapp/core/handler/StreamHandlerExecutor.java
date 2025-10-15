@@ -1,4 +1,5 @@
-package com.dali.fuaicodeapp.ai.core.handler;
+package com.dali.fuaicodeapp.core.handler;
+
 
 import com.dali.fuaicodeai.ai.model.enums.CodeGenTypeEnum;
 import com.dali.fuaicodeapp.service.ChatHistoryService;

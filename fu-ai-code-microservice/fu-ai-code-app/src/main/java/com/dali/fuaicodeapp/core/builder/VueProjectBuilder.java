@@ -1,4 +1,4 @@
-package com.dali.fuaicodeapp.ai.core.builder;
+package com.dali.fuaicodeapp.core.builder;
 
 import cn.hutool.core.util.RuntimeUtil;
 import lombok.extern.slf4j.Slf4j;
