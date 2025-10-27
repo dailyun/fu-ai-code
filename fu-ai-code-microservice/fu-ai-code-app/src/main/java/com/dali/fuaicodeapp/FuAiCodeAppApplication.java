@@ -7,7 +7,13 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cache.annotation.EnableCaching;
 
-@SpringBootApplication(exclude = {RedisEmbeddingStoreAutoConfiguration.class})
+@SpringBootApplication(scanBasePackages = {
+        "com.dali.fuaicodeapp",
+        "com.dali.fuaicodeai",   // 加上这一行
+        "com.dali.fuaicodecommon",
+        "com.dali.fuaicodeclient",
+})
+//(exclude = {RedisEmbeddingStoreAutoConfiguration.class})
 @MapperScan("com.dali.fuaicodeapp.mapper")
 @EnableCaching
 public class FuAiCodeAppApplication {

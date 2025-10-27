@@ -35,6 +35,7 @@ public class RoutingAiModelConfig {
     public ChatModel routingChatModelPrototype() {
         return OpenAiChatModel.builder()
                 .apiKey(apiKey)
+
                 .modelName(modelName)
                 .baseUrl(baseUrl)
                 .maxTokens(maxTokens)
