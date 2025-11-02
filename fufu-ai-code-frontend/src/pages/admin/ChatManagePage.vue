@@ -1,5 +1,6 @@
 <template>
   <div id="chatManagePage">
+    <div class="section-title">对话记录管理</div>
     <!-- 搜索表单 -->
     <a-form layout="inline" :model="searchParams" @finish="doSearch">
       <a-form-item label="消息内容">
@@ -198,9 +199,28 @@ const deleteMessage = async (id: number | undefined) => {
 
 <style scoped>
 #chatManagePage {
-  padding: 24px;
-  background: white;
-  margin-top: 16px;
+  padding: 36px 32px;
+  background: #f7f9fb;
+  min-height: 100vh;
+}
+.section-title {
+  font-size: 28px;
+  font-weight: 700;
+  color: #181a1d;
+  margin-bottom: 20px;
+  letter-spacing: 1px;
+  font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+}
+:deep(.ant-table) {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 18px rgba(20,36,66,.06);
+  border: 1px solid #f0f0f4;
+  overflow: hidden;
+}
+:deep(.ant-table-thead > tr > th) {
+  background: #fbfbfd;
+  font-weight: 600;
 }
 
 .message-text {

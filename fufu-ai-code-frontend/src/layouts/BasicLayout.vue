@@ -18,13 +18,19 @@ import GlobalFooter from '@/components/GlobalFooter.vue'
 
 <style scoped>
 .basic-layout {
-  background: none;
+  background: transparent;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 .main-content {
   width: 100%;
-  padding: 0;
-  background: none;
+  padding: 0 0 32px 0;
+  background: transparent;
   margin: 0;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 </style>

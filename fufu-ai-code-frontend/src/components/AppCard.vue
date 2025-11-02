@@ -1,10 +1,8 @@
 <template>
   <div class="app-card" :class="{ 'app-card--featured': featured }">
     <div class="app-preview">
-      <img v-if="app.cover" :src="app.cover" :alt="app.appName" />
-      <div v-else class="app-placeholder">
-        <span>🤖</span>
-      </div>
+      <img v-if="app.cover" :src="app.cover" :alt="app.appName" class="app-cover-img" />
+      <img v-else class="app-default-ai-icon" src="@/assets/default-ai-cover.png" alt="默认封面" />
       <div class="app-overlay">
         <a-space>
           <a-button type="primary" @click="handleViewChat">查看对话</a-button>
@@ -56,31 +54,26 @@ const handleViewWork = () => {
 
 <style scoped>
 .app-card {
-  background: rgba(255, 255, 255, 0.95);
+  background: #fff;
   border-radius: 16px;
   overflow: hidden;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  transition:
-    transform 0.3s,
-    box-shadow 0.3s;
+  box-shadow: 0 4px 24px 0 rgba(20,36,66,0.08);
+  border: 1.5px solid #f3f5f7;
+  transition: box-shadow 0.24s, transform 0.24s;
   cursor: pointer;
 }
-
 .app-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 15px 50px rgba(0, 0, 0, 0.25);
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 10px 32px 0 rgba(20,36,66,0.15);
 }
-
 .app-preview {
-  height: 180px;
-  background: #f5f5f5;
+  height: 160px;
+  background: #f5f8fc;
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
   position: relative;
+  border-radius: 18px 18px 0 0;
 }
 
 .app-preview img {
@@ -92,6 +85,15 @@ const handleViewWork = () => {
 .app-placeholder {
   font-size: 48px;
   color: #d9d9d9;
+}
+
+.app-cover-img, .app-default-ai-icon {
+  height: 110px;
+  max-width: 92%;
+  object-fit: contain;
+  border-radius: 16px;
+  margin: 0 auto;
+  display: block;
 }
 
 .app-overlay {
@@ -113,7 +115,7 @@ const handleViewWork = () => {
 }
 
 .app-info {
-  padding: 16px;
+  padding: 20px 18px 16px 18px;
   display: flex;
   align-items: center;
   gap: 12px;
@@ -129,21 +131,12 @@ const handleViewWork = () => {
 }
 
 .app-title {
-  font-size: 16px;
-  font-weight: 600;
-  margin: 0 0 4px;
-  color: #1a1a1a;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  font-size: 17px;
+  font-weight: 700;
+  color: #222;
 }
-
 .app-author {
-  font-size: 14px;
-  color: #666;
-  margin: 0;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  font-size: 13px;
+  color: #8a8f98;
 }
 </style>

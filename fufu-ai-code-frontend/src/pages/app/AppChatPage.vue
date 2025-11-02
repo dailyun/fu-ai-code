@@ -3,8 +3,8 @@
     <!-- 顶部栏 -->
     <div class="header-bar">
       <div class="header-left">
-        <h1 class="app-name">{{ appInfo?.appName || '网站生成器' }}</h1>
-        <a-tag v-if="appInfo?.codeGenType" color="blue" class="code-gen-type-tag">
+        <h1 class="app-name">FU-AI 网站生成器</h1>
+        <a-tag v-if="appInfo?.codeGenType" color="#31353b" class="code-gen-type-tag">
           {{ formatCodeGenType(appInfo.codeGenType) }}
         </a-tag>
       </div>
@@ -784,7 +784,11 @@ onUnmounted(() => {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 12px 16px;
+  padding: 18px 20px 14px 20px;
+  background: #fff;
+  border-radius: 12px 12px 0 0;
+  box-shadow: 0 3px 14px rgba(180,196,204,0.08);
+  margin-bottom: 0;
 }
 
 .header-left {
@@ -799,9 +803,11 @@ onUnmounted(() => {
 
 .app-name {
   margin: 0;
-  font-size: 18px;
-  font-weight: 600;
-  color: #1a1a1a;
+  font-size: 22px;
+  font-weight: 800;
+  color: #181a1d;
+  letter-spacing: 1px;
+  font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
 }
 
 .header-right {

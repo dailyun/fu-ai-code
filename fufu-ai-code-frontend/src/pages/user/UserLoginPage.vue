@@ -1,7 +1,7 @@
 <template>
   <div id="userLoginPage">
-    <h2 class="title">FUFU AI 应用生成 - 用户登录</h2>
-    <div class="desc">不写一行代码，生成完整应用</div>
+    <h2 class="title">FU-AI 网站生成器 登录</h2>
+    <div class="desc">AI为你生成专属高级网站，0代码，极速上线</div>
     <a-form :model="formState" name="basic" autocomplete="off" @finish="handleSubmit">
       <a-form-item name="userAccount" :rules="[{ required: true, message: '请输入账号' }]">
         <a-input v-model:value="formState.userAccount" placeholder="请输入账号" />
@@ -71,12 +71,17 @@ const handleSubmit = async (values: any) => {
 .title {
   text-align: center;
   margin-bottom: 16px;
+  font-size: 26px;
+  font-weight: 800;
+  color: #1a1a1a;
 }
 
 .desc {
   text-align: center;
-  color: #bbb;
+  color: #7d8699;
   margin-bottom: 16px;
+  font-size: 16px;
+  font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
 }
 
 .tips {

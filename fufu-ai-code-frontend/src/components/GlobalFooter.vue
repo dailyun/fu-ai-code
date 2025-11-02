@@ -2,13 +2,7 @@
   <a-layout-footer class="footer">
     <div class="footer-content">
       <p class="copyright">
-        <a
-          target="_blank"
-          rel="noopener noreferrer"
-          class="author-link"
-        >
-          by Dali
-        </a>
+        FU-AI 网站生成器 © 2025 by Dali
       </p>
     </div>
   </a-layout-footer>
@@ -20,12 +14,14 @@
 
 <style scoped>
 .footer {
-  background: rgba(255, 255, 255, 0.8);
-  backdrop-filter: blur(10px);
+  background: rgba(255,255,255,0.7);
+  backdrop-filter: blur(16px);
   text-align: center;
-  padding: 20px;
-  margin-top: 40px;
-  border-top: 1px solid rgba(102, 126, 234, 0.1);
+  padding: 24px 0;
+  border-top: 1px solid #ececec;
+  font-size: 15px;
+  color: #888;
+  box-shadow: none;
 }
 
 .copyright {

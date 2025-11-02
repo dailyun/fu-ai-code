@@ -158,13 +158,11 @@ onMounted(() => {
 
 <template>
   <div id="homePage">
-    <div class="container">
-      <!-- 网站标题和描述 -->
+    <div class="content-wrapper">
       <div class="hero-section">
-        <h1 class="hero-title">AI 应用生成平台</h1>
-        <p class="hero-description">一句话轻松创建网站应用</p>
+        <h1 class="main-title">FU-AI 网站生成器</h1>
+        <p class="subtitle">用人工智能生成属于你的高级网站，无需一行代码。</p>
       </div>
-
       <!-- 用户提示词输入框 -->
       <div class="input-section">
         <a-textarea
@@ -182,47 +180,13 @@ onMounted(() => {
           </a-button>
         </div>
       </div>
-
       <!-- 快捷按钮 -->
       <div class="quick-actions">
-        <a-button
-          type="default"
-          @click="
-            setPrompt(
-              '创建一个现代化的个人博客网站，包含文章列表、详情页、分类标签、搜索功能、评论系统和个人简介页面。采用简洁的设计风格，支持响应式布局，文章支持Markdown格式，首页展示最新文章和热门推荐。',
-            )
-          "
-          >个人博客网站</a-button
-        >
-        <a-button
-          type="default"
-          @click="
-            setPrompt(
-              '设计一个专业的企业官网，包含公司介绍、产品服务展示、新闻资讯、联系我们等页面。采用商务风格的设计，包含轮播图、产品展示卡片、团队介绍、客户案例展示，支持多语言切换和在线客服功能。',
-            )
-          "
-          >企业官网</a-button
-        >
-        <a-button
-          type="default"
-          @click="
-            setPrompt(
-              '构建一个功能完整的在线商城，包含商品展示、购物车、用户注册登录、订单管理、支付结算等功能。设计现代化的商品卡片布局，支持商品搜索筛选、用户评价、优惠券系统和会员积分功能。',
-            )
-          "
-          >在线商城</a-button
-        >
-        <a-button
-          type="default"
-          @click="
-            setPrompt(
-              '制作一个精美的作品展示网站，适合设计师、摄影师、艺术家等创作者。包含作品画廊、项目详情页、个人简历、联系方式等模块。采用瀑布流或网格布局展示作品，支持图片放大预览和作品分类筛选。',
-            )
-          "
-          >作品展示网站</a-button
-        >
+        <a-button type="default" @click="setPrompt('创建一个现代化的个人博客网站，包含文章列表、详情页、分类标签、搜索功能、评论系统和个人简介页面。采用简洁的设计风格，支持响应式布局，文章支持Markdown格式，首页展示最新文章和热门推荐。')">个人博客网站</a-button>
+        <a-button type="default" @click="setPrompt('设计一个专业的企业官网，包含公司介绍、产品服务展示、新闻资讯、联系我们等页面。采用商务风格的设计，包含轮播图、产品展示卡片、团队介绍、客户案例展示，支持多语言切换和在线客服功能。')">企业官网</a-button>
+        <a-button type="default" @click="setPrompt('构建一个功能完整的在线商城，包含商品展示、购物车、用户注册登录、订单管理、支付结算等功能。设计现代化的商品卡片布局，支持商品搜索筛选、用户评价、优惠券系统和会员积分功能。')">在线商城</a-button>
+        <a-button type="default" @click="setPrompt('制作一个精美的作品展示网站，适合设计师、摄影师、艺术家等创作者。包含作品画廊、项目详情页、个人简历、联系方式等模块。采用瀑布流或网格布局展示作品，支持图片放大预览和作品分类筛选。')">作品展示网站</a-button>
       </div>
-
       <!-- 我的作品 -->
       <div class="section">
         <h2 class="section-title">我的作品</h2>
@@ -241,12 +205,11 @@ onMounted(() => {
             v-model:page-size="myAppsPage.pageSize"
             :total="myAppsPage.total"
             :show-size-changer="false"
-            :show-total="(total: number) => `共 ${total} 个应用`"
+            :show-total="(total) => `共 ${total} 个应用`"
             @change="loadMyApps"
           />
         </div>
       </div>
-
       <!-- 精选案例 -->
       <div class="section">
         <h2 class="section-title">精选案例</h2>
@@ -266,7 +229,7 @@ onMounted(() => {
             v-model:page-size="featuredAppsPage.pageSize"
             :total="featuredAppsPage.total"
             :show-size-changer="false"
-            :show-total="(total: number) => `共 ${total} 个案例`"
+            :show-total="(total) => `共 ${total} 个案例`"
             @change="loadFeaturedApps"
           />
         </div>
@@ -277,17 +240,26 @@ onMounted(() => {
 
 <style scoped>
 #homePage {
-  width: 100%;
-  margin: 0;
-  padding: 0;
+  background: linear-gradient(120deg, #eaf1fd 0%, #fafdff 45%, #f3f7fa 100%);
   min-height: 100vh;
-  background:
-    linear-gradient(180deg, #f8fafc 0%, #f1f5f9 8%, #e2e8f0 20%, #cbd5e1 100%),
-    radial-gradient(circle at 20% 80%, rgba(59, 130, 246, 0.15) 0%, transparent 50%),
-    radial-gradient(circle at 80% 20%, rgba(139, 92, 246, 0.12) 0%, transparent 50%),
-    radial-gradient(circle at 40% 40%, rgba(16, 185, 129, 0.08) 0%, transparent 50%);
+  padding: 0 0 40px 0;
+  font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
   position: relative;
+  z-index: 1;
+  border-radius: 0 0 40px 40px;
   overflow: hidden;
+}
+#homePage::after {
+  content: "";
+  pointer-events: none;
+  position: absolute;
+  top: -120px; right: -120px;
+  width: 340px; height: 340px;
+  background: radial-gradient(circle at 60% 35%, rgba(60, 138, 255, 0.13), rgba(59,130,246,0.10) 70%, transparent 100%);
+  border-radius: 50%;
+  z-index: 0;
+  filter: blur(10px);
+  opacity: 0.95;
 }
 
 /* 科技感网格背景 */
@@ -366,12 +338,10 @@ onMounted(() => {
 
 /* 英雄区域 */
 .hero-section {
+  max-width: 680px;
+  margin: 0 auto 32px auto;
   text-align: center;
-  padding: 80px 0 60px;
-  margin-bottom: 28px;
-  color: #1e293b;
-  position: relative;
-  overflow: hidden;
+  padding: 98px 0 48px 0;
 }
 
 .hero-section::before {
@@ -408,19 +378,12 @@ onMounted(() => {
   }
 }
 
-.hero-title {
-  font-size: 56px;
-  font-weight: 700;
-  margin: 0 0 20px;
-  line-height: 1.2;
-  background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 50%, #10b981 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  letter-spacing: -1px;
-  position: relative;
-  z-index: 2;
-  animation: titleShimmer 3s ease-in-out infinite;
+.main-title {
+  font-size: 44px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  color: #191a23;
+  margin-bottom: 16px;
 }
 
 @keyframes titleShimmer {
@@ -433,13 +396,11 @@ onMounted(() => {
   }
 }
 
-.hero-description {
+.subtitle {
+  color: #7d8699;
   font-size: 20px;
-  margin: 0;
-  opacity: 0.8;
-  color: #64748b;
-  position: relative;
-  z-index: 2;
+  margin-bottom: 40px;
+  font-weight: 400;
 }
 
 /* 输入区域 */
@@ -571,6 +532,27 @@ onMounted(() => {
 
   .quick-actions {
     justify-content: center;
+  }
+}
+.content-wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-left: 32px;
+  padding-right: 32px;
+  box-sizing: border-box;
+  border-radius: 24px;
+  /* background: none; */
+  /* box-shadow: none; */
+  background: transparent;
+  box-shadow: none;
+  position: relative;
+  z-index: 2;
+}
+@media (max-width: 900px) {
+  .content-wrapper {
+    padding-left: 14px;
+    padding-right: 14px;
+    border-radius: 12px;
   }
 }
 </style>

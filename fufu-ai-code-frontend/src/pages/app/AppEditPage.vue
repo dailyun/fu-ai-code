@@ -1,7 +1,7 @@
 <template>
   <div id="appEditPage">
     <div class="page-header">
-      <h1>编辑应用信息</h1>
+      <h1>应用信息编辑</h1>
     </div>
 
     <div class="edit-container">
@@ -276,26 +276,29 @@ onMounted(() => {
 
 <style scoped>
 #appEditPage {
-  padding: 24px;
-  max-width: 1000px;
-  margin: 0 auto;
+  padding: 36px 24px;
+  background: #f7f9fb;
+  min-height: 100vh;
 }
 
 .page-header {
   display: flex;
   align-items: center;
   gap: 12px;
-  margin-bottom: 24px;
+  margin-bottom: 26px;
 }
 
 .page-header h1 {
   margin: 0;
-  font-size: 24px;
-  font-weight: 600;
+  font-size: 28px;
+  font-weight: 800;
+  color: #191a1a;
+  font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
 }
 
 .edit-container {
-  border-radius: 8px;
+  border-radius: 12px;
+  padding-bottom: 32px;
 }
 
 .cover-preview {
@@ -310,6 +313,12 @@ onMounted(() => {
   font-size: 12px;
   color: #999;
   margin-top: 4px;
+}
+
+:deep(.ant-card) {
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(20,36,66,0.07);
+  border: 1.5px solid #f0f0f3;
 }
 
 :deep(.ant-card-head) {

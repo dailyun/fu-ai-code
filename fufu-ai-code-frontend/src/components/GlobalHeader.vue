@@ -6,7 +6,7 @@
         <RouterLink to="/">
           <div class="header-left">
             <img class="logo" src="@/assets/logo.png" alt="Logo" />
-            <h1 class="site-title">FUFU应用生成</h1>
+            <h1 class="site-title">FU-AI 网站生成器</h1>
           </div>
         </RouterLink>
       </a-col>
@@ -135,14 +135,42 @@ const doLogout = async () => {
 
 <style scoped>
 .header {
-  background: #fff;
-  padding: 0 24px;
+  background: linear-gradient(90deg, rgba(60,138,255,0.32) 0%, rgba(60,138,255,0.15) 55%, rgba(255,255,255,0.91) 90%);
+  border-bottom: 1.5px solid #e2edfa;
+  box-shadow: 0 2px 16px 0 rgba(60,138,255,0.07);
+  padding: 0 40px;
+  border-radius: 0 0 18px 18px;
+  backdrop-filter: blur(18px);
+  transition: background 0.3s;
+  position: relative;
+  z-index: 2;
+  overflow: hidden;
+}
+.header::before {
+  content: "";
+  position: absolute;
+  left: 0; top: 0; right: 0; height: 9px;
+  background: linear-gradient(90deg, #4f8cff 8%, #dbeafe 100%);
+  opacity: 0.19;
+  border-radius: 0 0 120px 120px;
+  pointer-events: none;
+  z-index: 2;
+}
+.header::after {
+  content: "";
+  position: absolute;
+  left: -70px; bottom: -38px;
+  width: 210px; height: 80px;
+  background: radial-gradient(circle, rgba(91,154,255,0.16) 0%, rgba(60,138,255,0.11) 60%, transparent 90%);
+  z-index: 1;
+  filter: blur(6px);
 }
 
 .header-left {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
+  min-width: 0;
 }
 
 .logo {
@@ -152,11 +180,37 @@ const doLogout = async () => {
 
 .site-title {
   margin: 0;
-  font-size: 18px;
-  color: #1890ff;
+  font-size: 20px;
+  color: #222;
+  font-weight: 700;
+  letter-spacing: 1px;
+  font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+  max-width: 220px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  display: inline-block;
+  vertical-align: middle;
+}
+@media (max-width: 600px) {
+  .site-title {
+    font-size: 16px;
+    max-width: 140px;
+  }
 }
 
 .ant-menu-horizontal {
+  border-bottom: none !important;
+}
+.header,
+.a-layout-header,
+.ant-layout-header {
+  background: none !important;
+  box-shadow: none !important;
+}
+.ant-menu-horizontal.ant-menu-root {
+  background: transparent !important;
+  box-shadow: none !important;
   border-bottom: none !important;
 }
 </style>
